@@ -1,6 +1,6 @@
 process SAMTOOLS_SORT {
     tag "$meta.id"
-    label 'process_high'
+    label 'process_high_memory'
 
     conda "bioconda::samtools=1.17"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
