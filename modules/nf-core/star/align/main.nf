@@ -1,6 +1,8 @@
 process STAR_ALIGN {
     tag "$meta.id"
     label 'process_high'
+    errorStrategy 'retry'
+    maxErrors 3
 
     conda "bioconda::star=2.7.10a bioconda::samtools=1.16.1 conda-forge::gawk=5.1.0"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
