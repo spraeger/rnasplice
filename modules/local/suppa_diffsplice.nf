@@ -1,6 +1,8 @@
 process DIFFSPLICE {
     tag "${cond1}-${cond2}"
     label 'process_high'
+    errorStrategy 'retry'
+    maxErrors 3
 
     conda "bioconda::suppa=2.3"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
