@@ -1,6 +1,6 @@
 process DIFFSPLICE {
     tag "${cond1}-${cond2}"
-    label 'process_high'
+    label 'process_high_verylong'
     errorStrategy 'retry'
     maxErrors 3
 
