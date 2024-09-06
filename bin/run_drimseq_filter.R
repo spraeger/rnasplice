@@ -84,7 +84,7 @@ if (!all(rownames(cts) == tx2gene$tx)) {
 # Create counts data frame used downstream
 counts <- data.frame(gene_id = tx2gene$gene_id,
                     feature_id = tx2gene$tx,
-                    cts)
+                    cts, check.names=FALSE)
 
 
 # Filter for txs with > 0 counts across all samples
