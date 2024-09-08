@@ -93,6 +93,12 @@ contrasts <- contrasts[, c("contrast", "treatment", "control"), drop = FALSE]
 
 counts <- read.table(counts, sep = "\t", header = TRUE, check.names = FALSE)
 
+## hotfix to align sample IDs in counts (DRIMSeq::dmDSdata() processed them wrongly in run_drimseq_filter.R)
+counts_fixed_id <- gsub('.', '-', colnames(counts)[3:ncol(counts)], fixed=TRUE)
+if(all(samples$sample %in% colnames(counts))==FALSE && all(samples$sample %in% counts_fixed_id)==TRUE){
+  colnames(counts)[3:ncol(counts)] <- counts_fixed_id
+}
+
 annotation <- data.frame(
     featureID = counts$feature_id,
     groupID = counts$gene_id
